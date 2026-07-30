@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: polza_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-polza}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-polza_local_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-polza}
+      # Локаль для корректной сортировки кириллицы.
+      LANG: ru_RU.utf8
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-polza} -d ${POSTGRES_DB:-polza}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  # Разовый контейнер: применяет схему и заливает обе выгрузки, затем завершается.
+  # Запуск: docker compose run --rm loader
+  loader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner-scripts
+    container_name: polza_loader
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-polza}:${POSTGRES_PASSWORD:-polza_local_dev}@db:5432/${POSTGRES_DB:-polza}
+      DATA_DIR: /app/data_pack
+    volumes:
+      # Данные и SQL пробрасываем, чтобы правки не требовали пересборки образа.
+      - ./data_pack:/app/data_pack:ro
+      - ./schema.sql:/app/schema.sql:ro
+      - ./queries.sql:/app/queries.sql:ro
+    command: npm run load:all
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner-web
+    container_name: polza_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-polza}:${POSTGRES_PASSWORD:-polza_local_dev}@db:5432/${POSTGRES_DB:-polza}
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+
+volumes:
+  pgdata:

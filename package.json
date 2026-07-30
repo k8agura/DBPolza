@@ -1,0 +1,37 @@
+{
+  "name": "polza-companies",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0",
+    "db:schema": "tsx scripts/apply-schema.ts",
+    "load:json": "tsx scripts/load-json.ts",
+    "load:csv": "tsx scripts/load-csv.ts",
+    "report": "tsx scripts/report.ts",
+    "queries": "tsx scripts/run-queries.ts",
+    "test": "tsx scripts/test-normalize.ts",
+    "load:all": "npm run db:schema && npm run load:json && npm run load:csv && npm run report"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "iconv-lite": "^0.6.3",
+    "next": "^15.5.0",
+    "pg": "^8.13.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

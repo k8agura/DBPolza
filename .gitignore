@@ -1,0 +1,21 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# секреты
+.env
+.env.local
+.env.*.local
+
+# артефакты выполнения
+*.log
+*.tsbuildinfo
+next-env.d.ts
+
+# служебное
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

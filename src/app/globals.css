@@ -1,0 +1,262 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --border: #e3e6ea;
+  --text: #1a1d21;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-soft: #eff4ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.page-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* --- Панель фильтров ------------------------------------------------------ */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-grow {
+  flex: 1 1 260px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 550;
+  color: var(--muted);
+}
+
+.field input,
+.field select {
+  height: 36px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.btn {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 550;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg);
+}
+
+/* --- Результаты ----------------------------------------------------------- */
+
+.result-line {
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.result-line strong {
+  color: var(--text);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+thead th {
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  background: #fafbfc;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #f0f2f4;
+  vertical-align: top;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #fafbfc;
+}
+
+.cell-name {
+  font-weight: 550;
+}
+
+.cell-address {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 20px;
+  background: var(--accent-soft);
+  color: #1e40af;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* --- Пагинация ------------------------------------------------------------ */
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.pagination a:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.pagination .current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 550;
+}
+
+.pagination .disabled {
+  color: #c3c8ce;
+}
