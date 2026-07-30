@@ -12,7 +12,7 @@
 - [`queries.sql`](queries.sql) — три запроса из задания
 - [`ANOMALIES.md`](ANOMALIES.md) — что не так с `review.csv`, там самое интересное
 - [`ANSWERS_TASK4.md`](ANSWERS_TASK4.md) — ответы на четвёртую задачу
-- [`docs/screenshots/`](docs/screenshots) — скриншоты страницы
+- [`screenshots/`](/screenshots) — скриншоты страницы
 
 ---
 
